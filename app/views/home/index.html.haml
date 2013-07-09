@@ -2,3 +2,7 @@
 
 = link_to "Sign In", new_user_session_path
 = link_to "Connect with Twitter", user_omniauth_authorize_path(:twitter)
+- if (twitter = current_user && current_user.identities.where(provider: 'twitter').first)
+  %div
+    = link_to twitter.url, target: '_blank' do
+      = image_tag twitter.image
